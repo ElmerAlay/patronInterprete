@@ -8,51 +8,47 @@ package com.compi2.usac.analizadores;
 /** CUP generated class containing symbol constants. */
 public class Simbolo {
   /* terminals */
-  public static final int lte = 8;
-  public static final int number = 16;
-  public static final int bracket_o = 12;
-  public static final int minus = 3;
-  public static final int mult = 4;
-  public static final int lt = 6;
-  public static final int gte = 9;
-  public static final int bracket_c = 13;
-  public static final int semicolon = 19;
-  public static final int println = 21;
-  public static final int div = 5;
+  public static final int number = 2;
+  public static final int bracket_o = 16;
+  public static final int minus = 11;
+  public static final int mult = 12;
+  public static final int bool_true = 4;
+  public static final int bracket_c = 17;
+  public static final int semicolon = 7;
+  public static final int println = 9;
+  public static final int div = 13;
+  public static final int cond_else = 15;
   public static final int EOF = 0;
-  public static final int par_o = 14;
-  public static final int gt = 7;
-  public static final int id = 17;
+  public static final int par_o = 18;
+  public static final int cond_if = 14;
+  public static final int id = 3;
+  public static final int bool_false = 5;
   public static final int error = 1;
-  public static final int asign = 20;
-  public static final int plus = 2;
-  public static final int neq = 11;
-  public static final int par_c = 15;
-  public static final int var = 18;
-  public static final int eq = 10;
+  public static final int asign = 8;
+  public static final int plus = 10;
+  public static final int par_c = 19;
+  public static final int var = 6;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
+  "number",
+  "id",
+  "bool_true",
+  "bool_false",
+  "var",
+  "semicolon",
+  "asign",
+  "println",
   "plus",
   "minus",
   "mult",
   "div",
-  "lt",
-  "gt",
-  "lte",
-  "gte",
-  "eq",
-  "neq",
+  "cond_if",
+  "cond_else",
   "bracket_o",
   "bracket_c",
   "par_o",
-  "par_c",
-  "number",
-  "id",
-  "var",
-  "semicolon",
-  "asign",
-  "println"
+  "par_c"
   };
 }
 

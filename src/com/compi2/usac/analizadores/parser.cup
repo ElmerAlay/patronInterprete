@@ -1,6 +1,6 @@
 /**
  * @author Elmer Alay
- * @version 6.0
+ * @version 7.0
  * @since   05-12-2018
 */
 
@@ -25,15 +25,14 @@ parser code
     }  
 :} 
 
-//Terminales que no se van a utilizar de momento
-terminal plus, minus, mult, div, lt, gt, lte, gte, eq, neq;
-terminal bracket_o, bracket_c, par_o, par_c;
-
-terminal String number, id;
+terminal String number, id, bool_true, bool_false;
 terminal var, semicolon, asign, println;
+terminal plus, minus, mult, div, cond_if, cond_else;
+terminal bracket_o, bracket_c, par_o, par_c;
 
 non terminal INICIO, SENTENCIAS, SENTENCIA, VALOR;
 non terminal VAR_DEC, VAR_ASIGN, PRINTLN, EXPRESION;
+non terminal IF;
 
 precedence left plus, minus;
 precedence left mult, div;
@@ -53,6 +52,7 @@ SENTENCIAS  ::= SENTENCIAS SENTENCIA
 SENTENCIA   ::= VAR_DEC
             |   VAR_ASIGN
             |   PRINTLN
+            |   IF
 ;
 
 VAR_DEC ::= var id:n1 semicolon
@@ -109,4 +109,18 @@ VALOR   ::= par_o EXPRESION:n1 par_c
             {:
                 RESULT = symbolTable.get(n1); 
             :}
+        |   bool_true:n1
+            {:
+                RESULT = n1;
+            :}
+        |   bool_false:n1
+            {:
+                RESULT = n1;
+            :}
+;
+
+IF  ::= cond_if par_o EXPRESION par_c bracket_o SENTENCIAS bracket_c cond_else bracket_o SENTENCIAS bracket_c
+        {:
+
+        :}
 ;

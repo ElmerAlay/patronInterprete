@@ -1,6 +1,6 @@
 /**
  * @author Elmer Alay
- * @version 3.0
+ * @version 4.0
  * @since   05-12-2018
 */
 
@@ -50,6 +50,12 @@ id = [A-Za-z]+["_"0-9A-Za-z]*
 "println"   {
                 return new Symbol(Simbolo.println, yyline, yycolumn, yytext());
             }
+"if"    {
+            return new Symbol(Simbolo.cond_if, yyline, yycolumn, yytext());
+        }
+"else"  {
+            return new Symbol(Simbolo.cond_else, yyline, yycolumn, yytext());
+        }
 
 // ................................. Signos ....................................
 "="     {
@@ -73,24 +79,12 @@ id = [A-Za-z]+["_"0-9A-Za-z]*
             return new Symbol(Simbolo.div, yyline, yycolumn, yytext());
         }
 
-// ............................... Comparación .................................
-"<"     {
-            return new Symbol(Simbolo.lt, yyline, yycolumn, yytext());
+// ................................ booleanos  .................................
+"true"  {
+            return new Symbol(Simbolo.bool_true, yyline, yycolumn, yytext());
         }
-">"     {
-            return new Symbol(Simbolo.gt, yyline, yycolumn, yytext());
-        }
-"<="    {
-            return new Symbol(Simbolo.lte, yyline, yycolumn, yytext());
-        }
-">="    {
-            return new Symbol(Simbolo.gte, yyline, yycolumn, yytext());
-        }
-"=="    {
-            return new Symbol(Simbolo.eq, yyline, yycolumn, yytext());
-        }
-"!="    {
-            return new Symbol(Simbolo.neq, yyline, yycolumn, yytext());
+"false" {
+            return new Symbol(Simbolo.bool_false, yyline, yycolumn, yytext());
         }
 
 // ................................ Agrupación .................................

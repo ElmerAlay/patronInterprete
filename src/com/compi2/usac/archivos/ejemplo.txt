@@ -4,6 +4,12 @@ a = 5;
 var x;
 x = a;
 
+if(true){
+    a = 5+5;
+}else {
+    x = 1;
+}
+
 println a;
 println x;
 
