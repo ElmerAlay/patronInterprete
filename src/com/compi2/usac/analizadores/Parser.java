@@ -6,6 +6,8 @@
 package com.compi2.usac.analizadores;
 
 import java_cup.runtime.*;
+import java.util.Map;
+import java.util.HashMap;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -110,6 +112,8 @@ public class Parser extends java_cup.runtime.lr_parser {
   public int error_sym() {return 1;}
 
 
+
+    Map<String, Object> symbolTable = new HashMap<String,Object>();
 
     // Método al que se llama automáticamente ante algún error sintactico.
     public void syntax_error(Symbol s){ 
@@ -220,8 +224,12 @@ class CUP$Parser$actions {
           case 7: // VAR_DEC ::= var id semicolon 
             {
               Object RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
                 System.out.println("Declaración de variable");
+                symbolTable.put(n1, 0);
             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("VAR_DEC",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -231,8 +239,15 @@ class CUP$Parser$actions {
           case 8: // VAR_ASIGN ::= id asign EXPRESION semicolon 
             {
               Object RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
+		int n2left = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int n2right = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		Object n2 = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
                     System.out.println("Asignación de variable");
+                    symbolTable.put(n1, n2);
                 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("VAR_ASIGN",4, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -274,7 +289,7 @@ class CUP$Parser$actions {
 		int n1right = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		String n1 = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		
-                    RESULT = n1; 
+                    RESULT = symbolTable.get(n1); 
                 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("EXPRESION",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }

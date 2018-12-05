@@ -1,4 +1,8 @@
 var a;
 a = 5;
-a = x;
+
+var x;
+x = a;
+
 println a;
+println x;

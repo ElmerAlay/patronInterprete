@@ -1,15 +1,19 @@
 /**
  * @author Elmer Alay
- * @version 4.0
+ * @version 5.0
  * @since   05-12-2018
 */
 
 package com.compi2.usac.analizadores; 
 
 import java_cup.runtime.*;
+import java.util.Map;
+import java.util.HashMap;
 
 parser code 
 {:
+    Map<String, Object> symbolTable = new HashMap<String,Object>();
+
     // Método al que se llama automáticamente ante algún error sintactico.
     public void syntax_error(Symbol s){ 
             System.err.println("Error Sintáctico en la Línea " + (s.left) +" Columna "+s.right+ ". No se esperaba este componente: " +s.value+"."); 
@@ -48,15 +52,17 @@ SENTENCIA   ::= VAR_DEC
             |   PRINTLN
 ;
 
-VAR_DEC ::= var id semicolon
+VAR_DEC ::= var id:n1 semicolon
             {:
                 System.out.println("Declaración de variable");
+                symbolTable.put(n1, 0);
             :}
 ;
 
-VAR_ASIGN   ::= id asign EXPRESION semicolon
+VAR_ASIGN   ::= id:n1 asign EXPRESION:n2 semicolon
                 {:
                     System.out.println("Asignación de variable");
+                    symbolTable.put(n1, n2);
                 :}
 ;
 
@@ -72,6 +78,6 @@ EXPRESION   ::= number:n1
                 :}
             |   id:n1
                 {:
-                    RESULT = n1; 
+                    RESULT = symbolTable.get(n1); 
                 :}
 ;
