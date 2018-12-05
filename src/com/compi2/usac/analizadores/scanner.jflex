@@ -1,6 +1,6 @@
 /**
  * @author Elmer Alay
- * @version 1.0
+ * @version 2.0
  * @since   05-12-2018
 */
 
@@ -53,7 +53,7 @@ id = [A-Za-z]+["_"0-9A-Za-z]*
 
 // ................................. Signos ....................................
 "="     {
-            return new Symbol(Simbolo.equals, yyline, yycolumn, yytext());
+            return new Symbol(Simbolo.asign, yyline, yycolumn, yytext());
         } 
 ";"     {
             return new Symbol(Simbolo.semiColon, yyline, yycolumn, yytext());
