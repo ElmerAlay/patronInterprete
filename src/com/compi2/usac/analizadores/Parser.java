@@ -31,10 +31,10 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\012\000\002\002\004\000\002\002\003\000\002\003" +
+    "\000\014\000\002\002\004\000\002\002\003\000\002\003" +
     "\004\000\002\003\003\000\002\004\003\000\002\004\003" +
     "\000\002\004\003\000\002\005\005\000\002\006\006\000" +
-    "\002\007\005" });
+    "\002\007\005\000\002\010\003\000\002\010\003" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -42,20 +42,21 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\023\000\010\023\005\024\014\027\013\001\002\000" +
+    "\000\025\000\010\023\005\024\014\027\013\001\002\000" +
     "\012\002\000\023\005\024\014\027\013\001\002\000\004" +
-    "\026\022\001\002\000\012\002\ufffb\023\ufffb\024\ufffb\027" +
-    "\ufffb\001\002\000\004\002\021\001\002\000\012\002\ufffd" +
+    "\026\024\001\002\000\012\002\ufffb\023\ufffb\024\ufffb\027" +
+    "\ufffb\001\002\000\004\002\023\001\002\000\012\002\ufffd" +
     "\023\ufffd\024\ufffd\027\ufffd\001\002\000\012\002\ufffe\023" +
     "\ufffe\024\ufffe\027\ufffe\001\002\000\012\002\ufffc\023\ufffc" +
-    "\024\ufffc\027\ufffc\001\002\000\004\022\017\001\002\000" +
-    "\004\023\015\001\002\000\004\025\016\001\002\000\012" +
-    "\002\ufffa\023\ufffa\024\ufffa\027\ufffa\001\002\000\004\025" +
-    "\020\001\002\000\012\002\ufff8\023\ufff8\024\ufff8\027\ufff8" +
-    "\001\002\000\004\002\001\001\002\000\004\022\023\001" +
-    "\002\000\004\025\024\001\002\000\012\002\ufff9\023\ufff9" +
-    "\024\ufff9\027\ufff9\001\002\000\012\002\uffff\023\uffff\024" +
-    "\uffff\027\uffff\001\002" });
+    "\024\ufffc\027\ufffc\001\002\000\006\022\020\023\021\001" +
+    "\002\000\004\023\015\001\002\000\004\025\016\001\002" +
+    "\000\012\002\ufffa\023\ufffa\024\ufffa\027\ufffa\001\002\000" +
+    "\004\025\022\001\002\000\004\025\ufff7\001\002\000\004" +
+    "\025\ufff6\001\002\000\012\002\ufff8\023\ufff8\024\ufff8\027" +
+    "\ufff8\001\002\000\004\002\001\001\002\000\006\022\020" +
+    "\023\021\001\002\000\004\025\026\001\002\000\012\002" +
+    "\ufff9\023\ufff9\024\ufff9\027\ufff9\001\002\000\012\002\uffff" +
+    "\023\uffff\024\uffff\027\uffff\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -63,14 +64,15 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\023\000\016\002\006\003\003\004\010\005\007\006" +
-    "\011\007\005\001\001\000\012\004\024\005\007\006\011" +
+    "\000\025\000\016\002\006\003\003\004\010\005\007\006" +
+    "\011\007\005\001\001\000\012\004\026\005\007\006\011" +
     "\007\005\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\004\010\016\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001" });
+    "\001\000\004\010\024\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -226,7 +228,7 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 8: // VAR_ASIGN ::= id asign number semicolon 
+          case 8: // VAR_ASIGN ::= id asign EXPRESION semicolon 
             {
               Object RESULT =null;
 		
@@ -237,13 +239,44 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // PRINTLN ::= println number semicolon 
+          case 9: // PRINTLN ::= println EXPRESION semicolon 
             {
               Object RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		Object n1 = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
-                System.out.println("Imprimiendo por pantalla");
+                System.out.println(n1);
             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("PRINTLN",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 10: // EXPRESION ::= number 
+            {
+              Object RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		
+                    RESULT = Integer.parseInt(n1);
+                
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("EXPRESION",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 11: // EXPRESION ::= id 
+            {
+              Object RESULT =null;
+		int n1left = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int n1right = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String n1 = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		
+                    RESULT = n1; 
+                
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("EXPRESION",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
