@@ -1,6 +1,6 @@
 /**
  * @author Elmer Alay
- * @version 2.0
+ * @version 3.0
  * @since   05-12-2018
 */
 
@@ -29,6 +29,7 @@ terminal String number, id;
 terminal var, semicolon, asign, println;
 
 non terminal INICIO, SENTENCIAS, SENTENCIA;
+non terminal VAR_DEC, VAR_ASIGN, PRINTLN;
 
 start with INICIO; 
 
@@ -42,7 +43,25 @@ SENTENCIAS  ::= SENTENCIAS SENTENCIA
             |   SENTENCIA
 ;
 
-SENTENCIA   ::= var id semicolon
-            |   id asign number semicolon
-            |   println number semicolon
+SENTENCIA   ::= VAR_DEC
+            |   VAR_ASIGN
+            |   PRINTLN
+;
+
+VAR_DEC ::= var id semicolon
+            {:
+                System.out.println("Declaración de variable");
+            :}
+;
+
+VAR_ASIGN   ::= id asign number semicolon
+                {:
+                    System.out.println("Asignación de variable");
+                :}
+;
+
+PRINTLN ::= println number semicolon
+            {:
+                System.out.println("Imprimiendo por pantalla");
+            :}
 ;

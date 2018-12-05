@@ -31,9 +31,10 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\007\000\002\002\004\000\002\002\003\000\002\003" +
-    "\004\000\002\003\003\000\002\004\005\000\002\004\006" +
-    "\000\002\004\005" });
+    "\000\012\000\002\002\004\000\002\002\003\000\002\003" +
+    "\004\000\002\003\003\000\002\004\003\000\002\004\003" +
+    "\000\002\004\003\000\002\005\005\000\002\006\006\000" +
+    "\002\007\005" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -41,17 +42,20 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\020\000\010\023\011\024\006\027\004\001\002\000" +
-    "\004\022\021\001\002\000\012\002\ufffe\023\ufffe\024\ufffe" +
-    "\027\ufffe\001\002\000\004\023\017\001\002\000\012\002" +
-    "\000\023\011\024\006\027\004\001\002\000\004\002\015" +
-    "\001\002\000\004\026\012\001\002\000\004\022\013\001" +
-    "\002\000\004\025\014\001\002\000\012\002\ufffc\023\ufffc" +
-    "\024\ufffc\027\ufffc\001\002\000\004\002\001\001\002\000" +
-    "\012\002\uffff\023\uffff\024\uffff\027\uffff\001\002\000\004" +
-    "\025\020\001\002\000\012\002\ufffd\023\ufffd\024\ufffd\027" +
-    "\ufffd\001\002\000\004\025\022\001\002\000\012\002\ufffb" +
-    "\023\ufffb\024\ufffb\027\ufffb\001\002" });
+    "\000\023\000\010\023\005\024\014\027\013\001\002\000" +
+    "\012\002\000\023\005\024\014\027\013\001\002\000\004" +
+    "\026\022\001\002\000\012\002\ufffb\023\ufffb\024\ufffb\027" +
+    "\ufffb\001\002\000\004\002\021\001\002\000\012\002\ufffd" +
+    "\023\ufffd\024\ufffd\027\ufffd\001\002\000\012\002\ufffe\023" +
+    "\ufffe\024\ufffe\027\ufffe\001\002\000\012\002\ufffc\023\ufffc" +
+    "\024\ufffc\027\ufffc\001\002\000\004\022\017\001\002\000" +
+    "\004\023\015\001\002\000\004\025\016\001\002\000\012" +
+    "\002\ufffa\023\ufffa\024\ufffa\027\ufffa\001\002\000\004\025" +
+    "\020\001\002\000\012\002\ufff8\023\ufff8\024\ufff8\027\ufff8" +
+    "\001\002\000\004\002\001\001\002\000\004\022\023\001" +
+    "\002\000\004\025\024\001\002\000\012\002\ufff9\023\ufff9" +
+    "\024\ufff9\027\ufff9\001\002\000\012\002\uffff\023\uffff\024" +
+    "\uffff\027\uffff\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -59,12 +63,14 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\020\000\010\002\007\003\006\004\004\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\004" +
-    "\004\015\001\001\000\002\001\001\000\002\001\001\000" +
+    "\000\023\000\016\002\006\003\003\004\010\005\007\006" +
+    "\011\007\005\001\001\000\012\004\024\005\007\006\011" +
+    "\007\005\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001" });
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -182,29 +188,62 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 4: // SENTENCIA ::= var id semicolon 
+          case 4: // SENTENCIA ::= VAR_DEC 
             {
               Object RESULT =null;
 
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("SENTENCIA",2, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("SENTENCIA",2, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 5: // SENTENCIA ::= id asign number semicolon 
+          case 5: // SENTENCIA ::= VAR_ASIGN 
             {
               Object RESULT =null;
 
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("SENTENCIA",2, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("SENTENCIA",2, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 6: // SENTENCIA ::= println number semicolon 
+          case 6: // SENTENCIA ::= PRINTLN 
             {
               Object RESULT =null;
 
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("SENTENCIA",2, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("SENTENCIA",2, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 7: // VAR_DEC ::= var id semicolon 
+            {
+              Object RESULT =null;
+		
+                System.out.println("Declaración de variable");
+            
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("VAR_DEC",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 8: // VAR_ASIGN ::= id asign number semicolon 
+            {
+              Object RESULT =null;
+		
+                    System.out.println("Asignación de variable");
+                
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("VAR_ASIGN",4, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 9: // PRINTLN ::= println number semicolon 
+            {
+              Object RESULT =null;
+		
+                System.out.println("Imprimiendo por pantalla");
+            
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("PRINTLN",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
