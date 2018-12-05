@@ -1,6 +1,6 @@
 /**
  * @author Elmer Alay
- * @version 2.0
+ * @version 3.0
  * @since   05-12-2018
 */
 
@@ -45,10 +45,10 @@ id = [A-Za-z]+["_"0-9A-Za-z]*
 // -----------------------------------------------------------------------------
 
 "var"   {
-            return new Symbol(Simbolo.entero, yyline, yycolumn, yytext());
+            return new Symbol(Simbolo.var, yyline, yycolumn, yytext());
         }
 "println"   {
-                return new Symbol(Simbolo.print, yyline, yycolumn, yytext());
+                return new Symbol(Simbolo.println, yyline, yycolumn, yytext());
             }
 
 // ................................. Signos ....................................
@@ -56,7 +56,7 @@ id = [A-Za-z]+["_"0-9A-Za-z]*
             return new Symbol(Simbolo.asign, yyline, yycolumn, yytext());
         } 
 ";"     {
-            return new Symbol(Simbolo.semiColon, yyline, yycolumn, yytext());
+            return new Symbol(Simbolo.semicolon, yyline, yycolumn, yytext());
         }
 
 // .......................... Operadores Aritméticos ...........................

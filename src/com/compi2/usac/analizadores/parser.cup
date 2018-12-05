@@ -1,6 +1,6 @@
 /**
  * @author Elmer Alay
- * @version 1.0
+ * @version 2.0
  * @since   05-12-2018
 */
 
@@ -20,6 +20,10 @@ parser code
             System.err.println("Error síntactico irrecuperable en la Línea " + (s.left)+ " Columna "+s.right+". Componente " + s.value + " no reconocido."); 
     }  
 :} 
+
+//Terminales que no se van a utilizar de momento
+terminal plus, minus, mult, div, lt, gt, lte, gte, eq, neq;
+terminal bracket_o, bracket_c, par_o, par_c;
 
 terminal String number, id;
 terminal var, semicolon, asign, println;
