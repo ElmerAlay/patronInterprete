@@ -1,6 +1,6 @@
 /**
  * @author Elmer Alay
- * @version 5.0
+ * @version 6.0
  * @since   05-12-2018
 */
 
@@ -32,8 +32,11 @@ terminal bracket_o, bracket_c, par_o, par_c;
 terminal String number, id;
 terminal var, semicolon, asign, println;
 
-non terminal INICIO, SENTENCIAS, SENTENCIA;
+non terminal INICIO, SENTENCIAS, SENTENCIA, VALOR;
 non terminal VAR_DEC, VAR_ASIGN, PRINTLN, EXPRESION;
+
+precedence left plus, minus;
+precedence left mult, div;
 
 start with INICIO; 
 
@@ -72,12 +75,38 @@ PRINTLN ::= println EXPRESION:n1 semicolon
             :}
 ;
 
-EXPRESION   ::= number:n1
+EXPRESION   ::= EXPRESION:n1 plus EXPRESION:n2
                 {:
-                    RESULT = Integer.parseInt(n1);
+                    RESULT = Integer.parseInt(n1.toString()) + Integer.parseInt(n2.toString()); 
                 :}
-            |   id:n1
+            |   EXPRESION:n1 minus EXPRESION:n2
                 {:
-                    RESULT = symbolTable.get(n1); 
+                    RESULT = Integer.parseInt(n1.toString()) - Integer.parseInt(n2.toString()); 
                 :}
+            |   EXPRESION:n1 mult EXPRESION:n2
+                {:
+                    RESULT = Integer.parseInt(n1.toString()) * Integer.parseInt(n2.toString()); 
+                :}
+            |   EXPRESION:n1 div EXPRESION:n2
+                {:
+                    RESULT = Integer.parseInt(n1.toString()) / Integer.parseInt(n2.toString()); 
+                :}
+            |   VALOR:n1
+                {:
+                    RESULT = n1; 
+                :}
+;
+
+VALOR   ::= par_o EXPRESION:n1 par_c
+            {:
+                RESULT = n1;
+            :}
+        |   number:n1
+            {:
+                RESULT = Integer.parseInt(n1);
+            :}
+        |   id:n1
+            {:
+                RESULT = symbolTable.get(n1); 
+            :}
 ;

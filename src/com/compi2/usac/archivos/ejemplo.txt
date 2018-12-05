@@ -6,3 +6,6 @@ x = a;
 
 println a;
 println x;
+
+println a + x * 6;
+println (a+x) * 6;
